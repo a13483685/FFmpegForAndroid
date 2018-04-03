@@ -66,7 +66,7 @@ target_link_libraries( # Specifies the target library.
                        GLESv2
                        EGL
                        android
-                       #avcodec avformat avutil swscale swresample
+                       avcodec avformat avutil swscale swresample
                        # Links the target library to the log library
                        # included in the NDK.
                        ${log-lib} )

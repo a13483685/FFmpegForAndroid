@@ -14,7 +14,7 @@ android {
                 cppFlags "-std=c++11"
             }
             ndk {
-                abiFilter "armeabi-v7a"
+                abiFilters "armeabi-v7a"
             }
         }
         sourceSets { //库文件所在的路径
