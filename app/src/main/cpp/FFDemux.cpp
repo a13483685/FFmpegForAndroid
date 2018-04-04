@@ -30,16 +30,29 @@ bool FFDemux::open(const char* url)
         XLOGE("avformat_find_stream_info %s ailed!",url);
     }
     XLOGI("avformat_find_stream_info success");
+
     this->totalMs = ic->duration/(AV_TIME_BASE/1000);
 
-    XLOGE("total ms is",this->totalMs);
+    XLOGE("total ms is: %d",this->totalMs);
 
     return true;
 }
 
 XDATA FFDemux::read()
 {
+    if(!ic)return XDATA();
     XDATA d;
+    AVPacket *pkt = av_packet_alloc();
+    int re = av_read_frame(ic,pkt);
+    if(re != 0)
+    {
+        av_packet_free(&pkt);
+        return XDATA();
+    }
+    XLOGI("pack size is %d ptss %lld",pkt->size,pkt->pts);
+    d.data = (unsigned char*)pkt;
+    d.size = pkt->size;
+
     return d;
 }
 

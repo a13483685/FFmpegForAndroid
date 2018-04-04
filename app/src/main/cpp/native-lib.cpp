@@ -16,6 +16,7 @@ Java_xz_jfz_MainActivity_stringFromJNI(
     IDemux *de = new FFDemux();
 
     bool isOpen = de->open("/sdcard/1080.mp4");
+    de->start();
     if (isOpen)
     {
         XLOGI("open success!!");

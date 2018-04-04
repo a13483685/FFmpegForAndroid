@@ -7,7 +7,10 @@
 
 
 class XDATA {
-
+public:
+    int size;
+    unsigned char *data = 0;
+    void Drop();
 };
 
 
