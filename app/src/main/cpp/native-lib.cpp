@@ -3,6 +3,8 @@
 
 #include "FFDemux.h"
 #include "Xlog.h"
+#include "XThread.h"
+
 
 extern "C"
 JNIEXPORT jstring
@@ -15,11 +17,9 @@ Java_xz_jfz_MainActivity_stringFromJNI(
 
     IDemux *de = new FFDemux();
 
-    bool isOpen = de->open("/sdcard/1080.mp4");
+    de->open("/sdcard/1080.mp4");
     de->start();
-    if (isOpen)
-    {
-        XLOGI("open success!!");
-    }
+    XSleep(3000);
+    de->stop();
     return env->NewStringUTF(hello.c_str());
 }

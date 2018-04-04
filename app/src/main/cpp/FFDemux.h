@@ -12,6 +12,7 @@
 struct AVFormatContext;//指针不用去管它的实现
 
 class FFDemux:public IDemux {
+
 public:
     //virtual不删除 没有啥意义但是可以提醒调用者，这部分是用于重载的
     //打开文件

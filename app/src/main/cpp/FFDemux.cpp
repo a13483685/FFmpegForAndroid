@@ -49,7 +49,7 @@ XDATA FFDemux::read()
         av_packet_free(&pkt);
         return XDATA();
     }
-    XLOGI("pack size is %d ptss %lld",pkt->size,pkt->pts);
+//    XLOGI("pack size is %d ptss %lld",pkt->size,pkt->pts);
     d.data = (unsigned char*)pkt;
     d.size = pkt->size;
 

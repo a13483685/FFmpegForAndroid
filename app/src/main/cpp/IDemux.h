@@ -19,6 +19,7 @@ public:
     int totalMs = 0;
 
 protected:
+
     virtual void main();
 };
 
