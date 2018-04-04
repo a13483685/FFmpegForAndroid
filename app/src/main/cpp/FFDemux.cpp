@@ -4,15 +4,36 @@
 
 #include "FFDemux.h"
 #include "Xlog.h"
-#include <libavformat/avformat.h>
+
 
 extern "C" {
-//#include <>
+    #include <libavformat/avformat.h>
 }
 
 bool FFDemux::open(const char* url)
 {
     XLOGI("Open file %s begin",url);
+    int re = avformat_open_input(&ic,url,0,0);
+    if(re!=0)
+    {
+        char buf[1024] = {0};
+        av_strerror(re,buf, sizeof(buf));
+        XLOGE("FFDemux open %s failed!",buf);
+        return false;
+    }
+    XLOGI("FFDemux success");
+    re = avformat_find_stream_info(ic,0);
+    if(re !=0)
+    {
+        char buf[1024] = {0};
+        av_strerror(re,buf, sizeof(buf));
+        XLOGE("avformat_find_stream_info %s ailed!",url);
+    }
+    XLOGI("avformat_find_stream_info success");
+    this->totalMs = ic->duration/(AV_TIME_BASE/1000);
+
+    XLOGE("total ms is",this->totalMs);
+
     return true;
 }
 

@@ -14,6 +14,8 @@ public:
     virtual bool open(const char* url) = 0;
     //读取一帧数据，由调用者清理，以免发生内存的泄露
     virtual XDATA read() = 0;
+    //总时长
+    int totalMs = 0;
 };
 
 
