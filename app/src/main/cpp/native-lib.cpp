@@ -5,6 +5,13 @@
 #include "Xlog.h"
 #include "XThread.h"
 
+class TestObs:public IObserver
+{
+public:
+    void update(XDATA xdata){
+        XLOGI("TestObs update xdata datasize is : %d ",xdata.size);
+    }
+};
 
 extern "C"
 JNIEXPORT jstring
@@ -15,8 +22,9 @@ Java_xz_jfz_MainActivity_stringFromJNI(
         jobject /* this */) {
     std::string hello = "Hello from C++";
 
+    TestObs *obs = new TestObs;
     IDemux *de = new FFDemux();
-
+    de->add(obs);
     de->open("/sdcard/1080.mp4");
     de->start();
     XSleep(3000);
