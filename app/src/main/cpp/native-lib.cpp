@@ -29,8 +29,13 @@ Java_xz_jfz_MainActivity_stringFromJNI(
     de->add(obs);
     de->open("/sdcard/1080.mp4");
 
+    //用于视频解码
     Idecode *vdecode =new FFdecode();
     vdecode->Open(de->GetVPara());
+
+    //用于音频解码
+    Idecode *adecode = new FFdecode();
+    adecode->Open(de->GetAPara());
 
     de->start();
     XSleep(3000);

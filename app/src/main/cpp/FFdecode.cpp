@@ -32,6 +32,15 @@ bool FFdecode::Open(XParameter para)
         XLOGE("%s",buf);
         return false;
     }
+
+    if (codec->codec_type == AVMEDIA_TYPE_VIDEO)
+    {
+        isAudio = false;
+    }
+    else
+    {
+        isAudio = true;
+    }
     XLOGE("avcodec_open2 success !");
 
     return true;
