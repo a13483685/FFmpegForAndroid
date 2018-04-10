@@ -6,10 +6,11 @@
 #define JFZ_XDATA_H
 
 
-class XDATA {
+struct XDATA {
 public:
     int size;
     unsigned char *data = 0;
+    bool isAudio = false;
     void Drop();
 };
 

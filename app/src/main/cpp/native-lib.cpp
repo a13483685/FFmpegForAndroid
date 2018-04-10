@@ -4,12 +4,14 @@
 #include "FFDemux.h"
 #include "Xlog.h"
 #include "XThread.h"
+#include "Idecode.h"
+#include "FFdecode.h"
 
 class TestObs:public IObserver
 {
 public:
     void update(XDATA xdata){
-        XLOGI("TestObs update xdata datasize is : %d ",xdata.size);
+//        XLOGI("TestObs update xdata datasize is : %d ",xdata.size);
     }
 };
 
@@ -26,6 +28,10 @@ Java_xz_jfz_MainActivity_stringFromJNI(
     IDemux *de = new FFDemux();
     de->add(obs);
     de->open("/sdcard/1080.mp4");
+
+    Idecode *vdecode =new FFdecode();
+    vdecode->Open(de->GetVPara());
+
     de->start();
     XSleep(3000);
     de->stop();
