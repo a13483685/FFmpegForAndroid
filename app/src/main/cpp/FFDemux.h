@@ -33,6 +33,7 @@ private:
     AVFormatContext *ic = 0;//c++11中 这个值只有在无参数的构造函数中才会被赋值
     int audioStream = 1;
     int videoStream = 0;
+
 };
 
 
