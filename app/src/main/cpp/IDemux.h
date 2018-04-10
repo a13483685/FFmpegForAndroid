@@ -8,6 +8,7 @@
 #include "XDATA.h"
 #include "XThread.h"
 #include "IObserver.h"
+#include "XParameter.h"
 
 //解封装接口
 class IDemux :public IObserver{
@@ -18,6 +19,7 @@ public:
     virtual XDATA read() = 0;
     //总时长
     int totalMs = 0;
+    virtual XParameter GetVPara() = 0;
 
 protected:
 

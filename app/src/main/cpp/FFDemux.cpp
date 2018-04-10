@@ -37,6 +37,24 @@ bool FFDemux::open(const char* url)
 
     return true;
 }
+//获取视频流的索引信息
+XParameter FFDemux::GetVPara()
+{
+    if(!ic)
+    {
+        return XParameter();
+    }
+    //获取视频流信息
+    int re = av_find_best_stream(ic,AVMEDIA_TYPE_VIDEO,-1,-1,0,0);
+    if(re<0)
+    {
+        XLOGE("av_find_best_stream failed");
+        return XParameter();
+    }
+    XParameter para;
+    para.para = ic->streams[re]->codecpar;
+    return para;
+}
 
 XDATA FFDemux::read()
 {
